@@ -9,6 +9,8 @@ RetailAppcontrollers.controller('RetailApp-loginCntrl',function loginController 
 	$scope.password='';
 
 	$scope.signIn=function(){
+		console.log("USERANME :"+$scope.username +'PASSWORD:'+$scope.password);
+		SelectView.gotoView('checkout');
 
 	}
 

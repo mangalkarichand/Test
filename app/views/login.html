@@ -15,22 +15,28 @@
           <h1 class="text-center">Login Page</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block">
+          <form class="form col-md-12 center-block" name="myForm" novalidate role="form">
             <div class="form-group">
-              <input type="text" ng-model="username" class="form-control input-lg" placeholder="Email">
+              <input type="email" ng-model="username" class="form-control input-lg" name="username" placeholder="Email" required>
+              <span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+              <span ng-show="myForm.username.$error.required">Email is required.</span>
+              <span ng-show="myForm.username.$error.email">Invalid email address.</span></span>
             </div>
             <div class="form-group">
-              <input type="password" ng-model="password" class="form-control input-lg" placeholder="Password">
+              <input type="password" ng-model="password" class="form-control input-lg" name="password" placeholder="Password" ng-pattern="/^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).*$/" required>
+              <!-- The above should require 8 characters, at least 1 uppercase character and 1 digit or special character.  -->
+              <span style="color:red" ng-show="myForm.username.$dirty && myForm.password.$invalid">
+              <span ng-show="myForm.password.$error.required">Password is required.</span>
             </div>
             <div class="form-group">
-              <button ng-click="signIn()" class="btn btn-primary btn-lg btn-block">Sign In</button>
+              <button ng-click="signIn()" class="btn btn-primary btn-lg btn-block" ng-disabled="myForm.username.$invalid || myForm.password.$invalid">Sign In</button>
               <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
             </div>
           </form>
       </div>
       <div class="modal-footer">
           <div class="col-md-12">
-          <button  ng-click="cancel()" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button  ng-click="cancel()" class="btn" data-dismiss="modal" aria-hidden="true">Reset</button>
       </div>
       </div>
   </div>

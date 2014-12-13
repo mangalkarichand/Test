@@ -3,45 +3,9 @@ var fs = require('fs');
 var LIVERELOAD_PORT = 35729;
 var log4js,logger,isLoggerLoaded=false,
 loggerName='appLogger',LEVEL='INFO',log4jsConf='log4js_configuration.json';
-var generateApp = function(data) {
-	console.log(data);
-	fs.writeFile("generator/config.json", JSON.stringify(data, null, '\t'), function(err) {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log("The config.json created!");
-			var exec = require('child_process').exec, child;
 
-			child = exec('yo hybridapp', function(error, stdout, stderr) {
-				console.log('stdout: ' + stdout);
-				console.log('stderr: ' + stderr);
-				if (error !== null) {
-					console.log('exec error: ' + error);
-				}
-			});
-		}
-	});
-},
-mountFolder = function(connect, dir) {
+var mountFolder = function(connect, dir) {
 	return connect.static(require('path').resolve(dir));
-},
-mountGenerate = function(req, res, next) {
-
-	console.log("Requesting... " + req.url);
-	if (req.url !== '/generate') return next();
-
-	if (req.method == 'POST') {
-		var body = '';
-		req.on('data', function(data) {
-			body += data;
-		});
-		req.on('end', function() {
-			generateApp(JSON.parse(body));
-		});
-	}
-	res.statusCode = 200;
-	res.end();
-	console.log("Requesting... END " + req.url);
 },
 mountLogger = function(loggerObj) {
 	var setLog = function(log) {
@@ -231,9 +195,7 @@ grunt.loadNpmTasks('grunt-wiredep');
 grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-html-build');
-
-grunt.registerTask('server', [ 'connect:server','watch' ]);
-grunt.registerTask('generator', [ 'connect:generator' ]);
+grunt.registerTask('server', [ 'build','connect:server','watch' ]);
 grunt.registerTask('build', [ 'copy:all', 'cssmin', 'htmlbuild','wiredep' ]);
 grunt.registerTask('default', [ 'build','server' ]);
 }
