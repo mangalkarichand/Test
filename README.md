@@ -8,3 +8,5 @@ Below are the steps to access build on device/iPhone.
 •	Use the id/admin and password/dV$4uTh
 •	For IOS Under the Specialty iPhone list click on ITPR013340_Specialty_Personalize_Refill QA
 
+
+https://cdcuat1.cvs.com/MOBILE_BUILDS/Caremark-Phone-iPhone-Release_Feb_2016-QA.html
