@@ -10,3 +10,6 @@ Below are the steps to access build on device/iPhone.
 
 
 https://cdcuat1.cvs.com/MOBILE_BUILDS/Caremark-Phone-iPhone-Release_Feb_2016-QA.html
+
+
+https://my.testfairy.com/download/68RKECHJ6WW2TCSP70V3CDHH5QCD18VABG04JB40YHG1A73XC3WT01WH04/getapp
